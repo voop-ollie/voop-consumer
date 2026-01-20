@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Figma Prototype Comparison</title>
+    <title>Voop Consumer Prototype</title>
     <style>
         * {
             margin: 0;
@@ -27,7 +27,7 @@
             backdrop-filter: blur(10px);
             padding: 1rem 2rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -37,22 +37,6 @@
             color: white;
             font-size: 1.5rem;
             font-weight: 600;
-        }
-
-        .settings-btn {
-            padding: 0.5rem 1rem;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .settings-btn:hover {
-            background: #5568d3;
         }
 
         .prototypes-container {
@@ -114,160 +98,6 @@
             display: block;
         }
 
-        /* Hide fullscreen button in Figma embed */
-        .prototype-frame iframe {
-            pointer-events: auto;
-        }
-
-        /* Modal styles */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-        }
-
-        .modal {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
-            max-width: 800px;
-            width: 90%;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .modal-header h2 {
-            font-size: 1.5rem;
-            color: #333;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #666;
-            padding: 0.25rem 0.5rem;
-            line-height: 1;
-        }
-
-        .close-btn:hover {
-            color: #333;
-        }
-
-        .url-input-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .url-input-group:last-child {
-            margin-bottom: 0;
-        }
-
-        label {
-            display: block;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .input-wrapper {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        input[type="text"] {
-            flex: 1;
-            padding: 0.75rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            transition: border-color 0.3s ease;
-        }
-
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        button.load-btn {
-            padding: 0.75rem 1.5rem;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        button.load-btn:hover {
-            background: #5568d3;
-        }
-
-        .placeholder {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            color: #666;
-            font-size: 1rem;
-            text-align: center;
-            padding: 2rem;
-            background: #1a1a1a;
-        }
-
-        /* Toast notification */
-        .toast {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background: #28a745;
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            z-index: 3000;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-weight: 600;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            pointer-events: none;
-        }
-
-        .toast.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .toast-icon {
-            font-size: 1.2rem;
-        }
-
         @media (max-width: 768px) {
             .prototypes-container {
                 flex-direction: column;
@@ -284,494 +114,70 @@
             h1 {
                 font-size: 1.2rem;
             }
-
-            .toast {
-                bottom: 1rem;
-                right: 1rem;
-                left: 1rem;
-            }
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1 id="app-title">Figma Prototype Comparison</h1>
-        <button class="settings-btn" onclick="openSettings()">⚙️ Settings</button>
+        <h1>Voop Consumer Prototype</h1>
     </div>
 
     <div class="prototypes-container">
         <div class="prototype-wrapper">
             <div class="prototype-label">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='40' height='40' fill='%23667eea'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='20' font-weight='bold'%3EP%3C/text%3E%3C/svg%3E" alt="Parent" class="avatar" id="parent-avatar">
+                
                 <span>Parent phone</span>
             </div>
-            <div class="prototype-frame" id="frame1">
-                <div class="placeholder">Click Settings to load a prototype</div>
-            </div>
+            <div class="prototype-frame" id="frame1"></div>
         </div>
-        
+
         <div class="prototype-wrapper">
             <div class="prototype-label">
-                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='40' height='40' fill='%23f59e0b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='20' font-weight='bold'%3EC%3C/text%3E%3C/svg%3E" alt="Child" class="avatar" id="child-avatar">
+                
                 <span>Child's phone</span>
             </div>
-            <div class="prototype-frame" id="frame2">
-                <div class="placeholder">Click Settings to load a prototype</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Settings Modal -->
-    <div class="modal-overlay" id="settingsModal" onclick="closeSettingsOnOverlay(event)">
-        <div class="modal" onclick="event.stopPropagation()">
-            <div class="modal-header">
-                <h2>Settings</h2>
-                <button class="close-btn" onclick="closeSettings()">&times;</button>
-            </div>
-            <div class="url-input-group">
-                <label for="app-title-input">App Title:</label>
-                <div class="input-wrapper">
-                    <input type="text" id="app-title-input" placeholder="Enter app title" value="Figma Prototype Comparison" onchange="updateTitle()">
-                </div>
-            </div>
-            <div class="url-input-group">
-                <label for="prototype1-url">Parent phone URL:</label>
-                <div class="input-wrapper">
-                    <input type="text" id="prototype1-url" placeholder="Paste Figma prototype embed URL here">
-                    <button class="load-btn" onclick="loadPrototype(1)">Load</button>
-                </div>
-            </div>
-            <div class="url-input-group">
-                <label for="prototype2-url">Child's phone URL:</label>
-                <div class="input-wrapper">
-                    <input type="text" id="prototype2-url" placeholder="Paste Figma prototype embed URL here">
-                    <button class="load-btn" onclick="loadPrototype(2)">Load</button>
-                </div>
-            </div>
-            <div class="url-input-group" style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e0e0e0;">
-                <label>Avatars:</label>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <div style="flex: 1; min-width: 200px;">
-                        <label for="parent-avatar-input" style="font-size: 0.85rem; margin-bottom: 0.25rem; display: block;">Parent avatar:</label>
-                        <input type="file" id="parent-avatar-input" accept="image/*" onchange="handleAvatarUpload(1, this)" style="width: 100%; padding: 0.5rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 0.85rem;">
-                    </div>
-                    <div style="flex: 1; min-width: 200px;">
-                        <label for="child-avatar-input" style="font-size: 0.85rem; margin-bottom: 0.25rem; display: block;">Child avatar:</label>
-                        <input type="file" id="child-avatar-input" accept="image/*" onchange="handleAvatarUpload(2, this)" style="width: 100%; padding: 0.5rem; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 0.85rem;">
-                    </div>
-                </div>
-            </div>
-            <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #e0e0e0; display: flex; gap: 0.5rem; justify-content: flex-end;">
-                <button class="load-btn" onclick="saveUrls()" style="background: #28a745;">💾 Save</button>
-                <button class="load-btn" onclick="clearSaved()" style="background: #dc3545;">🔄 Reset to Default</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Toast Notification -->
-    <div class="toast" id="toast">
-        <span class="toast-icon">✓</span>
-        <span>Saved</span>
-    </div>
+            <div class="prototype-frame" id="frame2"></div>
         </div>
     </div>
 
     <script>
-        function openSettings() {
-            document.getElementById('settingsModal').classList.add('active');
-        }
+        // Hard-coded prototype URLs
+        const PROTOTYPE_URLS = {
+            parent: 'https://embed.figma.com/proto/8siCatXnHQCjJkviLmtbdG/Consumer?page-id=1%3A2&node-id=5-740&viewport=-19351%2C-4365%2C0.85&scaling=scale-down&content-scaling=fixed&starting-point-node-id=5%3A740&embed-host=share',
+            child: 'https://embed.figma.com/proto/8siCatXnHQCjJkviLmtbdG/Consumer?page-id=1%3A2&node-id=297-11978&viewport=-19351%2C-4365%2C0.85&scaling=scale-down&content-scaling=fixed&starting-point-node-id=297%3A11978&embed-host=share'
+        };
 
-        function closeSettings() {
-            document.getElementById('settingsModal').classList.remove('active');
-        }
+        function loadPrototype(frameId, url) {
+            const frame = document.getElementById(frameId);
 
-        function closeSettingsOnOverlay(event) {
-            if (event.target.classList.contains('modal-overlay')) {
-                closeSettings();
-            }
-        }
-
-        // Close modal on Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeSettings();
-            }
-        });
-
-        function loadPrototype(num, skipClose = false) {
-            const urlInput = document.getElementById(`prototype${num}-url`);
-            const frame = document.getElementById(`frame${num}`);
-            let url = urlInput.value.trim();
-
-            if (!url) {
-                if (!skipClose) {
-                    alert('Please enter a Figma prototype URL');
-                }
-                return;
-            }
-
-            // Extract URL from iframe src if user pasted the whole iframe code
-            // Try multiple strategies to extract the full URL
-            
-            // Strategy 1: Direct match of embed.figma.com URL (handles URLs with encoded chars)
-            let embedUrlMatch = url.match(/https?:\/\/embed\.figma\.com\/proto\/[^"'\s>]+/);
-            if (embedUrlMatch) {
-                url = embedUrlMatch[0];
-            } 
-            // Strategy 2: Extract from src="..." attribute
-            else if (url.includes('src=')) {
-                // Find the opening quote after src=
-                const srcMatch = url.match(/src\s*=\s*["']([^"']+)["']/);
-                if (srcMatch && srcMatch[1].includes('embed.figma.com')) {
-                    url = srcMatch[1];
-                } else {
-                    // Try without quotes
-                    const srcMatch2 = url.match(/src\s*=\s*([^\s>]+)/);
-                    if (srcMatch2 && srcMatch2[1].includes('embed.figma.com')) {
-                        url = srcMatch2[1];
-                    }
-                }
-            }
-            // Strategy 3: Find any embed.figma.com URL in the string
-            else {
-                const anyEmbedMatch = url.match(/https?:\/\/embed\.figma\.com\/proto\/[^\s<>"']+/);
-                if (anyEmbedMatch) {
-                    url = anyEmbedMatch[0];
-                }
-            }
-            
-            // Decode HTML entities if present
-            url = url.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'").trim();
-
+            // Clean URL - remove UI-related parameters and add our preferences
             let embedUrl = url;
-
-            // Handle embed.figma.com URLs (direct embed format) - use as-is
-            if (url.includes('embed.figma.com/proto/')) {
-                embedUrl = url;
-            }
-            // Handle regular figma.com/proto/ URLs - convert to embed format
-            else if (url.includes('figma.com/proto/') && !url.includes('embed.figma.com')) {
-                // Convert to embed format
-                embedUrl = url.replace('www.figma.com/proto/', 'embed.figma.com/proto/');
-                embedUrl = embedUrl.replace('figma.com/proto/', 'embed.figma.com/proto/');
-                // Ensure embed-host parameter is present
-                if (!embedUrl.includes('embed-host=')) {
-                    embedUrl += (embedUrl.includes('?') ? '&' : '?') + 'embed-host=share';
-                }
-            }
-            // If it's already a valid URL but not recognized, try to use it
-            else if (url.startsWith('http://') || url.startsWith('https://')) {
-                embedUrl = url;
-            }
-            else {
-                alert('Invalid URL format. Please paste the embed URL from Figma (starts with https://embed.figma.com/proto/)');
-                return;
-            }
-
-            // Add parameters to hide Figma UI elements and show only the prototype
-            // Remove or update existing UI-related parameters
             embedUrl = embedUrl.replace(/[?&]footer=[^&]*/g, '');
             embedUrl = embedUrl.replace(/[?&]viewport-controls=[^&]*/g, '');
             embedUrl = embedUrl.replace(/[?&]page-selector=[^&]*/g, '');
             embedUrl = embedUrl.replace(/[?&]show-proto-sidebar=[^&]*/g, '');
-            
+
             // Add parameters to hide UI elements
             const separator = embedUrl.includes('?') ? '&' : '?';
             embedUrl += separator + 'footer=false&viewport-controls=false&page-selector=false&show-proto-sidebar=0';
 
-            // Create iframe with proper attributes for Figma embedding
+            // Create iframe
             const iframe = document.createElement('iframe');
             iframe.src = embedUrl;
-            // Don't set allowfullscreen to prevent fullscreen button
             iframe.style.border = 'none';
             iframe.style.width = '100%';
             iframe.style.height = '100%';
             iframe.style.display = 'block';
-            
+
             // Clear frame and add iframe
             frame.innerHTML = '';
             frame.appendChild(iframe);
-
-            // Save URL to localStorage
-            saveUrlToStorage(num, urlInput.value.trim());
-
-            // Close modal after loading (unless auto-loading)
-            if (!skipClose) {
-                closeSettings();
-            }
         }
 
-        // Show toast notification
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            if (toast) {
-                const messageSpan = toast.querySelector('span:last-child');
-                if (messageSpan) {
-                    messageSpan.textContent = message;
-                }
-                // Remove show class first to reset animation
-                toast.classList.remove('show');
-                // Force reflow
-                void toast.offsetWidth;
-                // Add show class
-                toast.classList.add('show');
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 2000);
-            }
-        }
-
-        // Save URLs to localStorage
-        function saveUrls(event) {
-            // Prevent default if event exists
-            if (event) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            
-            try {
-                const url1 = document.getElementById('prototype1-url').value.trim();
-                const url2 = document.getElementById('prototype2-url').value.trim();
-                const titleInput = document.getElementById('app-title-input');
-                const title = titleInput ? titleInput.value.trim() : '';
-                
-                // Save URLs
-                if (url1) {
-                    localStorage.setItem('figma-prototype-1', url1);
-                }
-                if (url2) {
-                    localStorage.setItem('figma-prototype-2', url2);
-                }
-                
-                // Save title
-                if (title) {
-                    localStorage.setItem('figma-app-title', title);
-                    updateTitle();
-                } else {
-                    // Save default title if empty
-                    localStorage.setItem('figma-app-title', 'Figma Prototype Comparison');
-                }
-                
-                // Save avatars (get current avatar sources - always save, even if default)
-                const parentAvatar = document.getElementById('parent-avatar');
-                const childAvatar = document.getElementById('child-avatar');
-                
-                if (parentAvatar) {
-                    let avatarSrc = parentAvatar.getAttribute('src') || parentAvatar.src;
-                    if (avatarSrc && avatarSrc !== '') {
-                        saveAvatarData(1, avatarSrc);
-                    }
-                } else {
-                    console.warn('Parent avatar element not found');
-                }
-                
-                if (childAvatar) {
-                    let avatarSrc = childAvatar.getAttribute('src') || childAvatar.src;
-                    if (avatarSrc && avatarSrc !== '') {
-                        saveAvatarData(2, avatarSrc);
-                    }
-                } else {
-                    console.warn('Child avatar element not found');
-                }
-                
-                console.log('Save completed successfully');
-                
-                // Close modal first
-                closeSettings();
-                
-                // Show toast after a brief delay to ensure modal is closed
-                setTimeout(() => {
-                    showToast('Saved');
-                }, 200);
-            } catch (error) {
-                console.error('Error saving:', error);
-                showToast('Error saving');
-            }
-        }
-
-        // Save individual URL to localStorage
-        function saveUrlToStorage(num, url) {
-            if (url) {
-                localStorage.setItem(`figma-prototype-${num}`, url);
-            }
-        }
-
-        const MAX_AVATAR_SIZE = 300000; // ~300KB to avoid quota issues
-
-        function saveAvatarData(num, dataUrl) {
-            const key = `figma-avatar-${num}`;
-            if (!dataUrl) return false;
-            if (dataUrl.length > MAX_AVATAR_SIZE) {
-                showToast('Avatar too large (max ~300KB)');
-                console.warn('Avatar too large, not saved. size=', dataUrl.length);
-                return false;
-            }
-            localStorage.setItem(key, dataUrl);
-            return true;
-        }
-
-        // Handle avatar upload with resize/compression
-        function handleAvatarUpload(num, input) {
-            const file = input.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const avatarId = num === 1 ? 'parent-avatar' : 'child-avatar';
-                const avatarImg = document.getElementById(avatarId);
-                const originalDataUrl = e.target.result;
-
-                const img = new Image();
-                img.onload = function() {
-                    const maxDim = 128;
-                    let { width, height } = img;
-                    if (width > height) {
-                        height = Math.round((height / width) * maxDim);
-                        width = maxDim;
-                    } else {
-                        width = Math.round((width / height) * maxDim);
-                        height = maxDim;
-                    }
-
-                    const canvas = document.createElement('canvas');
-                    canvas.width = width;
-                    canvas.height = height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, width, height);
-                    const optimized = canvas.toDataURL('image/jpeg', 0.8);
-                    const finalDataUrl = optimized.length < originalDataUrl.length ? optimized : originalDataUrl;
-
-                    if (avatarImg) {
-                        avatarImg.src = finalDataUrl;
-                    }
-
-                    saveAvatarData(num, finalDataUrl);
-                };
-                img.onerror = () => {
-                    showToast('Avatar load failed');
-                };
-                img.src = originalDataUrl;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        // Load avatars from localStorage
-        function loadAvatarsFromStorage() {
-            const avatar1 = localStorage.getItem('figma-avatar-1');
-            const avatar2 = localStorage.getItem('figma-avatar-2');
-            
-            if (avatar1) {
-                const avatarImg = document.getElementById('parent-avatar');
-                if (avatarImg) {
-                    avatarImg.src = avatar1;
-                }
-            }
-            
-            if (avatar2) {
-                const avatarImg = document.getElementById('child-avatar');
-                if (avatarImg) {
-                    avatarImg.src = avatar2;
-                }
-            }
-        }
-
-        // Update title
-        function updateTitle() {
-            const titleInput = document.getElementById('app-title-input');
-            const titleElement = document.getElementById('app-title');
-            if (titleInput && titleElement) {
-                const newTitle = titleInput.value.trim() || 'Figma Prototype Comparison';
-                titleElement.textContent = newTitle;
-                localStorage.setItem('figma-app-title', newTitle);
-            }
-        }
-
-        // Load title from localStorage
-        function loadTitleFromStorage() {
-            const savedTitle = localStorage.getItem('figma-app-title');
-            const titleInput = document.getElementById('app-title-input');
-            const titleElement = document.getElementById('app-title');
-            
-            if (savedTitle) {
-                if (titleElement) {
-                    titleElement.textContent = savedTitle;
-                }
-                if (titleInput) {
-                    titleInput.value = savedTitle;
-                }
-            }
-        }
-
-        // Load URLs from localStorage
-        function loadUrlsFromStorage() {
-            const url1 = localStorage.getItem('figma-prototype-1');
-            const url2 = localStorage.getItem('figma-prototype-2');
-            
-            if (url1) {
-                document.getElementById('prototype1-url').value = url1;
-                // Auto-load if URL exists
-                setTimeout(() => loadPrototype(1, true), 100);
-            }
-            
-            if (url2) {
-                document.getElementById('prototype2-url').value = url2;
-                // Auto-load if URL exists
-                setTimeout(() => loadPrototype(2, true), 200);
-            }
-        }
-
-        // Clear saved URLs
-        function clearSaved() {
-            if (confirm('Are you sure you want to clear all saved URLs, avatars, and title?')) {
-                localStorage.removeItem('figma-prototype-1');
-                localStorage.removeItem('figma-prototype-2');
-                localStorage.removeItem('figma-avatar-1');
-                localStorage.removeItem('figma-avatar-2');
-                localStorage.removeItem('figma-app-title');
-                document.getElementById('prototype1-url').value = '';
-                document.getElementById('prototype2-url').value = '';
-                document.getElementById('parent-avatar-input').value = '';
-                document.getElementById('child-avatar-input').value = '';
-                document.getElementById('app-title-input').value = 'Figma Prototype Comparison';
-                
-                // Reset title
-                document.getElementById('app-title').textContent = 'Figma Prototype Comparison';
-                
-                // Reset avatars to defaults
-                document.getElementById('parent-avatar').src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='40' height='40' fill='%23667eea'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='20' font-weight='bold'%3EP%3C/text%3E%3C/svg%3E";
-                document.getElementById('child-avatar').src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Crect width='40' height='40' fill='%23f59e0b'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='20' font-weight='bold'%3EC%3C/text%3E%3C/svg%3E";
-                
-                // Clear the frames
-                document.getElementById('frame1').innerHTML = '<div class="placeholder">Click Settings to load a prototype</div>';
-                document.getElementById('frame2').innerHTML = '<div class="placeholder">Click Settings to load a prototype</div>';
-            }
-        }
-
-        // Allow Enter key to load prototypes
-        document.getElementById('prototype1-url').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                loadPrototype(1);
-            }
-        });
-
-        document.getElementById('prototype2-url').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                loadPrototype(2);
-            }
-        });
-
-        // Allow Enter key to update title
-        document.getElementById('app-title-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                updateTitle();
-            }
-        });
-
-        // Load saved URLs, avatars, and title on page load
+        // Auto-load prototypes on page load
         window.addEventListener('DOMContentLoaded', function() {
-            loadTitleFromStorage();
-            loadAvatarsFromStorage();
-            loadUrlsFromStorage();
+            loadPrototype('frame1', PROTOTYPE_URLS.parent);
+            loadPrototype('frame2', PROTOTYPE_URLS.child);
         });
     </script>
 </body>
